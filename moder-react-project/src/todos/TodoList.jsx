@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 
-const TodoList = ({todos = []}) => {
+const TodoList = () => {
+    const todos = useSelector((state) => state.todos)
     return (
-        <div className="list-wrapper">
+        <div>
             <NewTodoForm />
-            {todos.map(todo => <TodoListItem key={todo} todo={todo} />)}
+            {todos?.map((todo, index) => <TodoListItem key={todo.id} todo={todo} index={index} />)}
         </div>
     );
 }
